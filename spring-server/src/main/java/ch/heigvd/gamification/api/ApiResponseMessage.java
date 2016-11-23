@@ -1,8 +1,8 @@
-package io.swagger.api;
+package ch.heigvd.gamification.api;
 
 import javax.xml.bind.annotation.XmlTransient;
 
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.SpringCodegen", date = "2016-11-23T02:44:10.683Z")
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.SpringCodegen", date = "2016-11-23T04:59:48.736+01:00")
 
 @javax.xml.bind.annotation.XmlRootElement
 public class ApiResponseMessage {

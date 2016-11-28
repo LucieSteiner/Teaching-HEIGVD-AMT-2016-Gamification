@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
  *
  * @author Olivier Liechti
  */
-@RestController
+@RestController 
 public class RegistrationsEndpoint implements RegistrationsApi {
 
   @Override

@@ -1,0 +1,51 @@
+swagger: '2.0'
+info:
+  version: 1.0.0
+  title: Gamification Platform API
+  description: |
+    **This is the documentation of the AMT Gamification Platform API**
+host: localhost:8090
+basePath: /api
+schemes:
+  - http
+  - https
+paths:
+  /registrations:
+    get:
+      produces:
+        - application/json
+      responses:
+        200:
+          description:  List all registered applications
+          schema:
+            title: Registration summary
+            type: array
+            items:
+              $ref: '#/definitions/RegistrationSummary'
+    post:
+      consumes:
+        - application/json
+      parameters:
+        - name: body
+          in: body
+          description: The info required to register an application
+          schema:
+            $ref: '#/definitions/Registration'
+          required: true
+      responses:
+        201:
+          description: Register a new application
+definitions:
+  RegistrationSummary:
+    type: object
+    properties:
+      applicationName:
+        type: string
+  Registration:
+    type: object
+    properties:
+      applicationName:
+        type: string
+      password:
+        type: string
+

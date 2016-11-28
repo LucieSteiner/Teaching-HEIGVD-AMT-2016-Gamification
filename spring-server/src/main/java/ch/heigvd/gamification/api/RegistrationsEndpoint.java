@@ -21,7 +21,10 @@ public class RegistrationsEndpoint implements RegistrationsApi {
     List<RegistrationSummary> result = new ArrayList<>();
     result.add(new RegistrationSummary().applicationName("StackOverflow"));
     result.add(new RegistrationSummary().applicationName("GAPS"));
-    result.add(new RegistrationSummary().applicationName("Instagram"));
+    result.add(new RegistrationSummary().applicationName("TOto"));
+    result.add(new RegistrationSummary().applicationName("Facebook"));
+    result.add(new RegistrationSummary().applicationName("Twitter"));
+    result.add(new RegistrationSummary().applicationName("MyApplication"));
     return ResponseEntity.ok().body(result);
   }
 

@@ -1,11 +1,11 @@
-package ch.heigvd.gamification.api;
+package ch.heigvd.gamification.api.helpers;
 
 @javax.annotation.Generated(value = "class io.swagger.codegen.languages.SpringCodegen", date = "2016-11-23T04:59:48.736+01:00")
 
-public class NotFoundException extends ApiException {
+public class ApiException extends Exception{
 	private int code;
-	public NotFoundException (int code, String msg) {
-		super(code, msg);
+	public ApiException (int code, String msg) {
+		super(msg);
 		this.code = code;
 	}
 }

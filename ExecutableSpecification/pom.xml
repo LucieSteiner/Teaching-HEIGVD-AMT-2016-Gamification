@@ -35,12 +35,13 @@
               -->
               <library>okhttp-gson</library>
               <configOptions>
-                <sourceFolder>src/gen/java/main</sourceFolder>
-                <basePackage>ch.heigvd.gamification</basePackage>
+                <!--<sourceFolder>src/gen/java/main</sourceFolder>-->
+                <sourceFolder>.</sourceFolder>
+                <!--<basePackage>ch.heigvd.gamification</basePackage>-->
                 <modelPackage>ch.heigvd.gamification.api.dto</modelPackage>
                 <apiPackage>ch.heigvd.gamification.api</apiPackage>
               </configOptions>
-              
+              <output>target/generated-sources/swagger</output>
             </configuration>
           </execution>
         </executions>

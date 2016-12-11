@@ -1,5 +1,6 @@
 package ch.heigvd.amt.gamification.spec.steps;
 
+import ch.heigvd.gamification.ApiException;
 import ch.heigvd.gamification.ApiResponse;
 import ch.heigvd.gamification.api.DefaultApi;
 import ch.heigvd.gamification.api.dto.Registration;
@@ -20,6 +21,8 @@ public class ApplicationSteps {
 
   private final DefaultApi api = new DefaultApi();
 
+  private int applicationsCounter = 1;
+
   private int statusCode;
   private Registration registration;
   private List<RegistrationSummary> registrations;
@@ -27,15 +30,19 @@ public class ApplicationSteps {
   @Given("^I have an application payload$")
   public void i_have_an_application_payload() throws Throwable {
     registration = new Registration();
-    registration.setApplicationName("MyApp");
+    String randomApplicationName = "random-app-" + (applicationsCounter++) + "-" + System.currentTimeMillis();
+    registration.setApplicationName(randomApplicationName);
     registration.setPassword("toto123");
   }
 
   @When("^I POST it to the /registrations endpoint$")
   public void i_POST_it_to_the_registrations_endpoint() throws Throwable {
-    api.registrationsPost(registration);
-    ApiResponse response = api.registrationsPostWithHttpInfo(registration);
-    statusCode = response.getStatusCode();
+    try {
+      ApiResponse response = api.registrationsPostWithHttpInfo(registration);
+      statusCode = response.getStatusCode();
+    } catch (ApiException e) {
+      statusCode = e.getCode();
+    }
   }
 
   @Then("^I receive a (\\d+) status code$")
@@ -54,7 +61,7 @@ public class ApplicationSteps {
     RegistrationSummary expected = new RegistrationSummary();
     expected.setApplicationName(registration.getApplicationName());
 
-    assertThat(registrations).extracting("applicationName").contains("MyApplication");
+    assertThat(registrations).extracting("applicationName").contains(registration.getApplicationName());
   }
 
   @Given("^I know the name of an application$")

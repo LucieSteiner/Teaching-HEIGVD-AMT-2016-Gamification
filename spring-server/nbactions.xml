@@ -50,4 +50,16 @@
                 <exec.executable>java</exec.executable>
             </properties>
         </action>
+        <action>
+            <actionName>CUSTOM-spring-boot:debug</actionName>
+            <displayName>spring-boot:debug</displayName>
+            <goals>
+                <goal>spring-boot:run</goal>
+                
+                
+            </goals>
+            <properties>
+                <jpda.listen>maven</jpda.listen>
+            </properties>
+        </action>
     </actions>

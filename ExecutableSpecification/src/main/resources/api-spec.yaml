@@ -35,7 +35,67 @@ paths:
       responses:
         201:
           description: Register a new application
-definitions:
+  /auth:
+    post:
+      operationId: authenticateApplicationAndGetToken
+      consumes:
+      - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: body
+          in: body
+          description: The info required to authenticate an application
+          schema:
+            $ref: '#/definitions/Credentials'
+          required: true
+      responses:
+        200:
+          description: Authentication sucessful
+          schema:
+            $ref: '#/definitions/Token'
+        401:
+          description: Authentication failed
+  /users/{id}:
+    get:
+      description:  Retrieve one user by id
+      operationId: findUserById
+      parameters:
+        - $ref: '#/parameters/TokenHeader'
+        - name: id
+          in: path
+          description: id of the user to fetch
+          required: true
+          type: string
+      produces:
+        - application/json
+      responses:
+        200:
+          description:
+              Returns the specified user state
+          schema:
+            $ref: '#/definitions/User'   
+  /events:
+    post:
+      description:  Report that a new event has happened in the gamified application
+      operationId: reportEvent
+      consumes:
+      - application/json
+      parameters:
+        - $ref: '#/parameters/TokenHeader'
+        - name: event
+          in: body
+          description: The event that occured in the realm of the gamified application
+          schema:
+            $ref: '#/definitions/Event'
+          required: true
+      responses:
+        202:
+          description:
+              The platform has accepted the event and will process it (asynchronously)
+          schema:
+            $ref: '#/definitions/Event'   
+definitions: 
   RegistrationSummary:
     type: object
     properties:
@@ -48,4 +108,42 @@ definitions:
         type: string
       password:
         type: string
+  Credentials:
+    type: object
+    properties:
+      applicationName:
+        type: string
+      password:
+        type: string
+  Token:
+    type: object
+    properties:
+      applicationName:
+        type: string
+  Event:
+    type: object
+    properties:
+      type:
+        type: string
+      userId:
+        type: string
+      timestamp:
+        type: string
+        format: date-time
+      properties:
+        type: object
+  User:
+    type: object
+    properties:
+      userId:
+        type: string
+      numberOfEvents:
+        type: integer
+parameters: 
+  TokenHeader:
+    description: token that identifies the application sending the request
+    name: X-Gamification-Token
+    in: header
+    required: true
+    type: string
 

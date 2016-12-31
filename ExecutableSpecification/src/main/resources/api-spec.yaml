@@ -94,7 +94,43 @@ paths:
           description:
               The platform has accepted the event and will process it (asynchronously)
           schema:
-            $ref: '#/definitions/Event'   
+            $ref: '#/definitions/Event'  
+  /pointscales:
+    post:
+      description:  Create a new pointscale for a gamified application
+      operationId: createPointScale
+      consumes:
+      - application/json
+      parameters:
+        - $ref: '#/parameters/TokenHeader'
+        - name: pointscale
+          in: body
+          description: The new pointscale to create
+          schema:
+            $ref: '#/definitions/PointScale'
+          required: true
+      responses:
+        201:
+          description:
+              The pointscale was created
+          schema:
+            $ref: '#/definitions/PointScale'
+    get:
+      description: Retrieve all point scales from an application
+      operationId: findAllPointScales
+      produces:
+      - application/json
+      parameters:
+        - $ref: '#/parameters/TokenHeader'
+      responses:
+        200:
+          description:  List all pointscales
+          schema:
+            title: Point Scale
+            type: array
+            items:
+              $ref: '#/definitions/PointScale'
+      
 definitions: 
   RegistrationSummary:
     type: object
@@ -139,6 +175,13 @@ definitions:
         type: string
       numberOfEvents:
         type: integer
+  PointScale:
+    type: object
+    properties:
+      name:
+        type: string
+      description:
+        type: string
 parameters: 
   TokenHeader:
     description: token that identifies the application sending the request

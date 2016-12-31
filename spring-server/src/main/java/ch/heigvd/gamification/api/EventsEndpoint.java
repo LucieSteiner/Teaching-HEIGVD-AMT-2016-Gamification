@@ -38,6 +38,6 @@ public class EventsEndpoint implements EventsApi {
     eventProcessor.processEvent(targetApplication, event);
     return ResponseEntity.accepted().build();
   }
-
-
+  
+  
 }

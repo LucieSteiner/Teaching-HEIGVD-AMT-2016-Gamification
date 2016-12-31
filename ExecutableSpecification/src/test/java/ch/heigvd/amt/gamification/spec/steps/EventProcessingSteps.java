@@ -45,12 +45,12 @@ public class EventProcessingSteps {
   /*
   * Keep track of the applications created during the scenarios execution
    */
-  private final Map<String, Registration> applications = new HashMap<>();
+   private final  Map<String, Registration> applications = new HashMap<>();
 
   /*
   * Keep track of the users created for each of the applications
    */
-  private final Map<String, Map<String, User>> applicationsUsers = new HashMap<>();
+   private final  Map<String, Map<String, User>> applicationsUsers = new HashMap<>();
 
   /*
   * Keep track of the token obtained for each of the applications

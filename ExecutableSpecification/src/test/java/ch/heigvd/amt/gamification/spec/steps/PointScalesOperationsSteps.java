@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ch.heigvd.amt.gamification.spec.steps;
 
 import ch.heigvd.gamification.ApiException;
@@ -24,45 +19,33 @@ import static org.junit.Assert.*;
 
 /**
  *
- * @author Lucie
+ * @author Lucie Steiner
  */
 public class PointScalesOperationsSteps {
-
-   private final DefaultApi api = new DefaultApi();
    private PointScale payload;
    private static final Logger LOG = Logger.getLogger(EventProcessingSteps.class.getName());
+   
+   private final DefaultApi api = new DefaultApi();
+   
 
-   /*
-    * Variables used to generate test data
-    */
    final static String DUMMY_PASSWORD = "dummyPassword";
    int applicationsCounter = 1;
    int usersCounter = 1;
 
-   /*
-    * Variables used to share data between steps
-    */
    private ApiResponse lastApiResponse = null;
    private int status;
 
-   /*
-    * Keep track of the applications created during the scenarios execution
-    */
+   
    private final Map<String, Registration> applications = new HashMap<>();
 
-   /*
-    * Keep track of the users created for each of the applications
-    */
+   
    private final Map<String, Map<String, User>> applicationsUsers = new HashMap<>();
 
-   /*
-    * Keep track of the token obtained for each of the applications
-    */
    private final Map<String, Token> applicationsTokens = new HashMap<>();
 
    @Given("^a token for a gamified application (.*)$")
    public void a_token_for_a_gamified_application(String applicationReference) throws Throwable {
-      String randomApplicationName = "app-name-" + (applicationsCounter++) + '-' + System.currentTimeMillis();
+      String randomApplicationName = "app-name-" + (api.applicationsCounter++) + '-' + System.currentTimeMillis();
       Registration applicationRegistration = new Registration();
       applicationRegistration.setApplicationName(randomApplicationName);
       applicationRegistration.setPassword(DUMMY_PASSWORD);

@@ -22,7 +22,7 @@ import static org.junit.Assert.*;
  * @author Olivier Liechti
  */
 public class EventProcessingSteps {
-
+   
   private static final Logger LOG = Logger.getLogger(EventProcessingSteps.class.getName());
 
   /*
